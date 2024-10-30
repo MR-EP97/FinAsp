@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('tel_id')->unique();
-            $table->decimal('Balance', 20);
+            $table->decimal('balance', 20);
             $table->timestamps();
         });
 

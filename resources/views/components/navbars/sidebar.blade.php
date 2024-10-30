@@ -43,9 +43,9 @@
                 </a>
             </li>
 
-{{--            <li class="nav-item mt-3">--}}
-{{--                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">{{__('Real-time')}}</h6>--}}
-{{--            </li>--}}
+            {{--            <li class="nav-item mt-3">--}}
+            {{--                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">{{__('Real-time')}}</h6>--}}
+            {{--            </li>--}}
             <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'expense-income' ? ' active bg-gradient-primary' : '' }} "
                    href="{{ route('expense-income') }}">
@@ -55,6 +55,17 @@
                     <span class="nav-link-text ms-1">{{__('Income and Expense')}}</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'modify-balance' ? ' active bg-gradient-primary' : '' }} "
+                   href="{{ route('modify-balance') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">account_balance_wallet</i>
+                    </div>
+                    <span class="nav-link-text ms-1">{{__('Modify balance')}}</span>
+                </a>
+            </li>
+
 
         </ul>
     </div>

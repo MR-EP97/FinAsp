@@ -6,6 +6,7 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Billing;
 use App\Http\Livewire\ExpenseIncome;
+use App\Http\Livewire\ModifyBalance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
@@ -47,6 +48,7 @@ Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->n
 //Route::group(['middleware' => 'auth'], function () {
 Route::get('dashboard', Dashboard::class)->name('dashboard');
 Route::get('expense-income', ExpenseIncome::class)->name('expense-income');
+Route::get('modify-balance', ModifyBalance::class)->name('modify-balance');
 //    Route::get('billing', Billing::class)->name('billing');
 //    Route::get('profile', Profile::class)->name('profile');
 //    Route::get('tables', Tables::class)->name('tables');

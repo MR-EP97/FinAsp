@@ -44,7 +44,7 @@ class ExpenseIncome extends Component
 
         $this->reset();
 
-        return redirect()->back()->withStatus(__('Submit Successfully'));
+        session()->flash('status', __('Submit Successfully'));
     }
 
     public function render(): View
