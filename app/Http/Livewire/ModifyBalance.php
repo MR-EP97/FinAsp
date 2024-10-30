@@ -11,8 +11,10 @@ class ModifyBalance extends Component
 {
 
     public $balance;
-    public float $amount = 0.00;
+    public $amount = 0.00;
     protected $user_id;
+    public $durationType;
+
 
     public function __construct()
     {
@@ -50,7 +52,7 @@ class ModifyBalance extends Component
             ->where('id', $this->user_id)
             ->update(['balance' => $this->balance]);
 
-        $this->reset('amount ');
+        $this->reset('amount');
 
         session()->flash('status', __('Balance updated successfully'));
     }

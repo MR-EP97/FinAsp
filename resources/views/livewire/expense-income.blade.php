@@ -84,7 +84,6 @@
                 <div class="row">
 
                     <div class="mb-3 col-md-6">
-
                         <label class="form-label">{{__('Amount')}}</label>
                         <input wire:model="amount" type="number" class="form-control border border-2 p-2">
                         @error('amount')
@@ -93,7 +92,6 @@
                     </div>
 
                     <div class="mb-3 col-md-6">
-
                         <label class="form-label">{{__('Title')}}</label>
                         <input wire:model="title" type="text" class="form-control border border-2 p-2">
                         @error('title')
@@ -101,35 +99,84 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-6">
-
-                        <label class="form-label">{{__('Type')}}</label>
-                        <select wire:model="type" class="form-select border border-2 p-2">
-                            <option value="">{{__('-- Select Type --')}}</option>
-                            <option value="income">{{__('Income')}}</option>
-                            <option value="expense">{{__('Expense')}}</option>
-                        </select>
-                        {{--                        <input wire:model.blur="user.phone" type="number" class="form-control  border border-2 p-2">--}}
+                    <div class="mb-3">
+                        <label class="form-label">{{ __('Transaction Type') }}</label>
+                        <div class="form-check">
+                            <input wire:model="type" type="radio" id="income" name="type" value="income"
+                                   class="form-check-input">
+                            <label class="form-check-label" for="income">{{ __('Income') }}</label>
+                        </div>
+                        <div class="form-check">
+                            <input wire:model="type" type="radio" id="expense" name="type" value="expense"
+                                   class="form-check-input">
+                            <label class="form-check-label" for="expense">{{ __('Expense') }}</label>
+                        </div>
                         @error('type')
                         <p class='text-danger inputerror'>{{ $message }} </p>
                         @enderror
                     </div>
 
                     <div class="mb-3 col-md-6">
-                        <label class="form-label">{{__('Date')}}</label>
-                        <input wire:model="date" type="date" class="form-control border border-2 p-2">
-                        @error('date')
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">{{__('Period')}}</label>
+                            <select wire:model="period" class="form-select border border-2 p-2">
+                                <option value="">{{__('-- Select Type --')}}</option>
+                                <option value="monthly">{{__('Monthly')}}</option>
+                                <option value="weekly">{{__('Weekly')}}</option>
+                                <option value="daily">{{__('Daily')}}</option>
+                                {{--                                <option value="custom">{{__('Custom')}}</option>--}}
+                            </select>
+                            @error('period')
+                            <p class='text-danger inputerror'>{{ $message }} </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label">{{__('Start Date')}}</label>
+                        <input wire:model="startDate" type="date" class="form-control border border-2 p-2">
+                        @error('startDate')
                         <p class='text-danger inputerror'>{{ $message }} </p>
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-6">
-                        <label class="form-label">{{__('Period')}}</label>
-                        <input wire:model="period" type="number" class="form-control border border-2 p-2">
-                        @error('period')
-                        <p class='text-danger inputerror'>{{ $message }} </p>
-                        @enderror
+                    <label class="form-label">{{ __('Duration Type') }}</label>
+                    <div class="form-check">
+                        <input wire:click="setDuration('numberOfPeriod')" type="radio" id="numberOfPeriod"
+                               name="durationType"
+                               class="form-check-input">
+                        <label class="form-check-label" for="numberOfPeriod">{{ __('Number of Periods') }}</label>
                     </div>
+                    <div class="form-check">
+                        <input wire:click="setDuration('EndDate')" type="radio" id="EndDate" name="durationType"
+                               class="form-check-input">
+                        <label class="form-check-label" for="EndDate">{{ __('End Date') }}</label>
+                    </div>
+                    @error('numberOfPeriod')
+                    <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
+                    @error('endDate')
+                    <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
+
+
+                    @if($durationType === 'numberOfPeriod')
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">{{__('Number of period')}}</label>
+                            <input wire:model="numberOfPeriod" type="number"
+                                   class="form-control border border-2 p-2">
+                        </div>
+                    @endif
+
+
+                    @if($durationType === 'EndDate')
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">{{__('End Date')}}</label>
+                            <input wire:model="endDate" type="date" class="form-control border border-2 p-2">
+                        </div>
+                    @endif
+
+
 
                     <div class="mb-3 col-md-12">
 
@@ -142,6 +189,8 @@
                         @enderror
                     </div>
                 </div>
+
+
                 <button type="submit" class="btn bg-gradient-dark">Submit</button>
             </form>
 

@@ -12,9 +12,11 @@ class ExpenseIncome extends Model
         'amount',
         'title',
         'type',
-        'description',
-        'date',
         'period',
+        'start_date',
+        'end_date',
+        'number_of_periods',
+        'description',
         'user_id',
     ];
 

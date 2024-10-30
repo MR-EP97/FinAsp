@@ -14,8 +14,12 @@ class ExpenseIncome extends Component
     public $title;
     public $type;
     public $description;
-    public $date;
+    public $startDate;
+    public $endDate;
+
     public $period;
+    public $durationType;
+    public $numberOfPeriod;
 
     protected function rules(): array
     {
@@ -23,9 +27,11 @@ class ExpenseIncome extends Component
             'amount' => 'required',
             'title' => 'required',
             'type' => 'required|in:income,expense',
-            'description' => 'required:max:150',
-            'date' => 'date',
             'period' => 'string',
+            'startDate' => 'required|date',
+            'endDate' => 'date|nullable|required_without:numberOfPeriod',
+            'numberOfPeriod' => 'integer|nullable|required_without:endDate',
+            'description' => 'max:150',
         ];
     }
 
@@ -34,16 +40,47 @@ class ExpenseIncome extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function setDuration($durationType)
+    {
+
+        $this->durationType = $durationType;
+    }
+
     public function submit()
     {
         $request = array_merge($this->validate(), ['user_id' => 1]);
 
-        ExpenseIncomeModel::query()->create(
-            $request
-        );
+        switch ($this->durationType) {
+            case 'numberOfPeriod':
+                unset($request['EndDate']);
+                break;
+            case 'EndDate':
+                unset($request['numberOfPeriod']);
+                break;
+        }
+//        dd($request);
 
-        $this->reset();
+        ExpenseIncomeModel::query()
+            ->create([
+                'amount' => $this->amount,
+                'title' => $this->title,
+                'type' => $this->type,
+                'period' => $this->period,
+                'start_date' => $this->startDate,
+                'end_date' => $this->endDate,
+                'number_of_periods' => $this->numberOfPeriod,
+                'description' => $this->description,
+                'user_id' => 1
+            ]);
 
+//        dd($this->validate());
+
+//        ExpenseIncomeModel::query()->create(
+//            $request
+//        );
+//
+//        $this->reset();
+//
         session()->flash('status', __('Submit Successfully'));
     }
 

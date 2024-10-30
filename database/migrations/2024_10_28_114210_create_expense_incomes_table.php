@@ -12,12 +12,14 @@ return new class extends Migration {
     {
         Schema::create('expense_incomes', function (Blueprint $table) {
             $table->id();
-            $table->decimal('amount', 15, 2);
+            $table->decimal('amount', 15,2);
             $table->string('title');
             $table->enum('type', ['income', 'expense']);
-            $table->string('description')->nullable();
-            $table->dateTime('date')->nullable();
-            $table->string('period')->nullable();
+            $table->enum('period', ['monthly', 'weekly', 'daily']);
+            $table->dateTime('start_date');
+            $table->dateTime('end_date')->nullable();
+            $table->integer('number_of_periods')->nullable();
+            $table->text('description')->nullable();
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
