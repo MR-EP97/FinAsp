@@ -73,14 +73,9 @@ class ExpenseIncome extends Component
                 'user_id' => 1
             ]);
 
-//        dd($this->validate());
 
-//        ExpenseIncomeModel::query()->create(
-//            $request
-//        );
-//
-//        $this->reset();
-//
+        $this->reset();
+
         session()->flash('status', __('Submit Successfully'));
     }
 

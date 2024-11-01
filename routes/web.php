@@ -6,6 +6,7 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Billing;
 use App\Http\Livewire\ExpenseIncome;
+use App\Http\Livewire\IndexExpenseIncome;
 use App\Http\Livewire\ModifyBalance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
@@ -32,11 +33,11 @@ use GuzzleHttp\Middleware;
 */
 
 Route::get('/', function () {
-    return redirect('sign-in');
+    return redirect('dashboard');
 });
 
-Route::get('forgot-password', ForgotPassword::class)->middleware('guest')->name('password.forgot');
-Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->name('reset-password');
+//Route::get('forgot-password', ForgotPassword::class)->middleware('guest')->name('password.forgot');
+//Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->name('reset-password');
 
 
 //Route::get('sign-up', Register::class)->middleware('guest')->name('register');
@@ -49,6 +50,7 @@ Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->n
 Route::get('dashboard', Dashboard::class)->name('dashboard');
 Route::get('expense-income', ExpenseIncome::class)->name('expense-income');
 Route::get('modify-balance', ModifyBalance::class)->name('modify-balance');
+Route::get('index-expense-income', IndexExpenseIncome::class)->name('index-expense-income');
 //    Route::get('billing', Billing::class)->name('billing');
 //    Route::get('profile', Profile::class)->name('profile');
 //    Route::get('tables', Tables::class)->name('tables');
