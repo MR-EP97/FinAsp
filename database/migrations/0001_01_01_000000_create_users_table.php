@@ -12,8 +12,11 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('tel_id')->unique();
-            $table->decimal('balance', 20);
+            $table->integer('tel_id')->unique();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->dateTime('auth_date')->nullable();
+            $table->decimal('balance', 20)->default(0);
             $table->timestamps();
         });
 

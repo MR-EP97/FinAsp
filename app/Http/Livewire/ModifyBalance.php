@@ -15,13 +15,12 @@ class ModifyBalance extends Component
     protected $user_id;
     public $durationType;
 
+    public $userId;
+
 
     public function __construct()
     {
-//        $this->user_id = Auth::user()->id;
-//        $this->balance = 0.00;
-//        $this->amount = 0.00;
-        $this->user_id = 4;
+        $this->user_id = Auth::user()->id;
     }
 
 

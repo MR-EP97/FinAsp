@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\ExpenseIncome as ExpenseIncomeModel;
 
@@ -48,7 +49,7 @@ class ExpenseIncome extends Component
 
     public function submit()
     {
-        $request = array_merge($this->validate(), ['user_id' => 1]);
+        $request = $this->validate();
 
         switch ($this->durationType) {
             case 'numberOfPeriod':
@@ -58,7 +59,6 @@ class ExpenseIncome extends Component
                 unset($request['numberOfPeriod']);
                 break;
         }
-//        dd($request);
 
         ExpenseIncomeModel::query()
             ->create([
@@ -70,7 +70,7 @@ class ExpenseIncome extends Component
                 'end_date' => $this->endDate,
                 'number_of_periods' => $this->numberOfPeriod,
                 'description' => $this->description,
-                'user_id' => 1
+                'user_id' => Auth::user()->id
             ]);
 
 

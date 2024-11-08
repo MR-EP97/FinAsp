@@ -71,7 +71,7 @@
                                         <td>
                                             <div class="d-flex px-2">
                                                 <div class="my-auto">
-                                                    <span class="mb-0 text-sm">1/5</span>
+                                                    <span class="mb-0 text-sm">{{$expenseIncome->passed_period}}</span>
                                                 </div>
                                             </div>
                                         </td>

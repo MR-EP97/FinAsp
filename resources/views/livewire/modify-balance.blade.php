@@ -50,3 +50,8 @@
 
 </div>
 
+@push('js')
+
+@endpush
+
+

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
@@ -8,6 +9,7 @@ use App\Http\Livewire\Billing;
 use App\Http\Livewire\ExpenseIncome;
 use App\Http\Livewire\IndexExpenseIncome;
 use App\Http\Livewire\ModifyBalance;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
@@ -32,9 +34,17 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/', function () {
-    return redirect('dashboard');
+Route::get('/', function (Request $request) {
+    return view('welcome');
 });
+
+Route::get('/auth-telegram', [AuthController::class, 'login'])->name('auth-telegram');
+Route::get('/error', function () {
+    return 'Error 403';
+})->name('error');
+
+
+
 
 //Route::get('forgot-password', ForgotPassword::class)->middleware('guest')->name('password.forgot');
 //Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->name('reset-password');
